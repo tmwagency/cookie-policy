@@ -21,7 +21,7 @@
 
 	/* Styling */
 	padding: 20px;
-	background-color: #222;
+	background-color: #555;
 	color: #fff;
 }
 
@@ -71,5 +71,9 @@
 	width: 20px;
 	height: 20px;
 	cursor: pointer;
-	background-color: red;
+
+	/* Styling */
+	background-color: #fff;
+	color: #000;
+	text-align: center;
 }
