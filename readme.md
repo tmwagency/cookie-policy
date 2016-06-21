@@ -13,7 +13,7 @@ npm install --save tmw-cookiepolicy
 ```js
 var policyElement = document.querySelector('.cookiePolicy');
 
-CookiePolicy(policyElement, {
+new CookiePolicy(policyElement, {
 	// options, defaults listed
 
 	cookieName: 'cookies-agreed',
@@ -22,18 +22,10 @@ CookiePolicy(policyElement, {
 	cookieNameSeen: 'cookies-policy-seen',
 	// cookie name to check
 
-	accept: {
-
-		seen: true,
-		// accept policy if seen once
-
-	},
-
 	expire: 30,
 	// in days
 });
 ```
-
 
 ## Template
 Use the template at https://github.com/tmwagency/cookie-policy/blob/master/template.html
