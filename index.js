@@ -4,47 +4,40 @@
  * @author Zander Martineau
  */
 
-
-export function CookiePolicy(element, options) {
+function CookiePolicy(element, options) {
 	this.element = element;
-	this.options = Object.assign(this.defaultOptions, options);
+
+	this.options = {
+		cookieName: options.cookieName || 'cookies-agreed', // cookie name to check
+		cookieNameSeen: options.cookieNameSeen || 'cookies-policy-seen', // cookie name to check
+		expire: options.expire || 30, // in days
+	}
+
+	this.accept = {
+		// cta: true, // accept policy if cta button clicked
+		seen: true, // accept policy if seen once
+		// hide: true // accept policy if close/hide button clicked
+	};
 
 	if (!window.localStorage) { return; }
-
-	console.log('foo');
 
 	// Check storage
 	if (localStorage.getItem(this.options.cookieName)) {
 		return;
 
-	} else if (localStorage.getItem(this.options.cookieName) !== 'true') {
+	} else {
 
-		if (this.options.accept.seen && localStorage.getItem(this.options.cookieNameSeen)) {
+		if (this.accept.seen && localStorage.getItem(this.options.cookieNameSeen)) {
 			// Policy seen but not accepted. Implicitly accept policy
 			this.acceptPolicy();
 
 		} else {
 			// Show policy
-			setTimeout(() => this.showCookieMessage, 500);
+			setTimeout(this.showCookieMessage.bind(this), 500);
 			this.addEvents();
-
 		}
 	}
 }
-
-/**
- * defaultOptions
- */
-CookiePolicy.prototype.defaultOptions = {
-	cookieName: 'cookies-agreed', // cookie name to check
-	cookieNameSeen: 'cookies-policy-seen', // cookie name to check
-	accept: {
-		// cta: true, // accept policy if cta button clicked
-		seen: true, // accept policy if seen once
-		// hide: true // accept policy if close/hide button clicked
-	},
-	expire: 30, // in days
-};
 
 /**
  * showCookieMessage
@@ -60,17 +53,9 @@ CookiePolicy.prototype.showCookieMessage = function() {
 CookiePolicy.prototype.addEvents = function() {
 	var acceptElements = this.element.querySelectorAll('.js-cookiePolicy-accept'); //.on('click', this.acceptPolicy.bind(this));
 
-	// var nodesArray = [].slice.call(this.element.querySelectorAll('.js-cookiePolicy-accept'));
-	// nodesArray.addEventListener('click', this.acceptPolicy.bind(this));
-	console.log('addevents');
-	// $$('.js-cookiePolicy-accept', this.element).forEach((element, index) => {
-	// 	element.addEventListener('click', this.acceptPolicy);
-	// });
-
-	// const arr = ['a', 'b', 'c'];
-	for (const elem of acceptElements) {
-		console.log(elem);
-	}
+	$$('.js-cookiePolicy-accept', this.element).forEach(function(element, index) {
+		element.addEventListener('click', this.acceptPolicy.bind(this));
+	}.bind(this));
 };
 
 /**
@@ -80,8 +65,15 @@ CookiePolicy.prototype.acceptPolicy = function(ev) {
 	if (ev) {
 		ev.preventDefault();
 	}
-	console.log('clicked');
 
 	localStorage.setItem(this.options.cookieName, true);
 	this.element.classList.remove('is-visible');
 };
+
+function $$(selector, context) {
+	context = context || document;
+	var elements = context.querySelectorAll(selector);
+	return Array.prototype.slice.call(elements);
+}
+
+module.exports = CookiePolicy;
