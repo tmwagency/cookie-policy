@@ -9,8 +9,8 @@ function CookiePolicy(element, options) {
 	this.element = element;
 
 	this.options = {
-		cookieName: options.cookieName || 'cookies-agreed', // cookie name to check
-		cookieNameSeen: options.cookieNameSeen || 'cookies-policy-seen', // cookie name to check
+		policyName: options.policyName || 'policy-agreed',
+		policySeen: options.policySeen || 'policy-seen',
 		expire: options.expire || 30, // in days
 	}
 
@@ -23,12 +23,12 @@ function CookiePolicy(element, options) {
 	if (!window.localStorage) { return; }
 
 	// Check storage
-	if (localStorage.getItem(this.options.cookieName)) {
+	if (localStorage.getItem(this.options.policyName)) {
 		return;
 
 	} else {
 
-		if (this.accept.seen && localStorage.getItem(this.options.cookieNameSeen)) {
+		if (this.accept.seen && localStorage.getItem(this.options.policySeen)) {
 			// Policy seen but not accepted. Implicitly accept policy
 			this.acceptPolicy();
 
@@ -45,7 +45,7 @@ function CookiePolicy(element, options) {
  */
 CookiePolicy.prototype.showCookieMessage = function() {
 	this.element.classList.add('is-visible');
-	localStorage.setItem(this.options.cookieNameSeen, true);
+	localStorage.setItem(this.options.policySeen, true);
 };
 
 /**
@@ -67,7 +67,7 @@ CookiePolicy.prototype.acceptPolicy = function(ev) {
 		ev.preventDefault();
 	}
 
-	localStorage.setItem(this.options.cookieName, true);
+	localStorage.setItem(this.options.policyName, true);
 	this.element.classList.remove('is-visible');
 };
 
