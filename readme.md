@@ -18,7 +18,7 @@ var CookiePolicy = require('tmw-cookiepolicy');
 ```
 
 ### UMD build
-If you need a UMD/ES5 version, it has been provided. Use the CDN version at https://npmcdn.com/tmw-cookiepolicy@1.0.0/umd/cookie-policy-umd.js or require it with an explicit path:
+If you need a UMD/ES5 version, it has been provided. Use the CDN version at https://npmcdn.com/tmw-cookiepolicy@2.0.0/umd/cookie-policy-umd.js or require it with an explicit path:
 
 ```js
 var CookiePolicy = require('tmw-cookiepolicy/umd/cookie-policy-umd');
@@ -32,10 +32,10 @@ var policyElement = document.querySelector('.cookiePolicy');
 new CookiePolicy(policyElement, {
 	// options, defaults listed
 
-	policyName: 'cookies-agreed',
+	policyName: 'policy-agreed',
 	// cookie name to check
 
-	policySeen: 'cookies-policy-seen',
+	policySeen: 'policy-seen',
 	// cookie name to check
 
 	expire: 30,
