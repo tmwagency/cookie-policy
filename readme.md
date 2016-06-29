@@ -8,6 +8,22 @@ Show a cookie policy message/banner on your site
 npm install --save tmw-cookiepolicy
 ```
 
+### Import/require
+```js
+// ES2015/ES6
+import CookiePolicy from 'tmw-cookiepolicy';
+
+// ES5
+var CookiePolicy = require('tmw-cookiepolicy');
+```
+
+### UMD build
+If you need a UMD/ES5 version, it has been provided. Use the CDN version at https://npmcdn.com/tmw-cookiepolicy@1.0.0/umd/cookie-policy-umd.js or require it with an explicit path:
+
+```js
+var CookiePolicy = require('tmw-cookiepolicy/umd/cookie-policy-umd');
+```
+
 ## Options
 
 ```js
