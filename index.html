@@ -33,12 +33,12 @@
 		</div>
 	</div>
 
-	<script src="/es5/cookie-policy-standalone.js"></script>
+	<script src="/umd/cookie-policy-umd.js"></script>
 	<script>
 		var policyElement = document.querySelector('.cookiePolicy');
 		new CookiePolicy(policyElement, {
-			cookieName: 'barilla-cookies-agreed',
-			cookieNameSeen: 'barilla-cookies-seen'
+			policyName: 'policy-agreed',
+			policySeen: 'policy-seen'
 		});
 	</script>
 </body>

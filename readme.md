@@ -16,10 +16,10 @@ var policyElement = document.querySelector('.cookiePolicy');
 new CookiePolicy(policyElement, {
 	// options, defaults listed
 
-	cookieName: 'cookies-agreed',
+	policyName: 'cookies-agreed',
 	// cookie name to check
 
-	cookieNameSeen: 'cookies-policy-seen',
+	policySeen: 'cookies-policy-seen',
 	// cookie name to check
 
 	expire: 30,
