@@ -45,7 +45,12 @@ function CookiePolicy(element, options) {
  */
 CookiePolicy.prototype.showCookieMessage = function() {
 	this.element.classList.add('is-visible');
-	localStorage.setItem(this.options.policySeen, true);
+
+	try {
+		localStorage.setItem(this.options.policySeen, true);
+	} catch (e) {
+		console.log("localStorage not supported: " + e);
+	}
 };
 
 /**
@@ -67,7 +72,12 @@ CookiePolicy.prototype.acceptPolicy = function(ev) {
 		ev.preventDefault();
 	}
 
-	localStorage.setItem(this.options.policyName, true);
+	try {
+		localStorage.setItem(this.options.policyName, true);
+	} catch (e) {
+		console.log("localStorage not supported: " + e);
+	}
+
 	this.element.classList.remove('is-visible');
 };
 
@@ -78,5 +88,6 @@ function $$(selector, context) {
 }
 
 module.exports = CookiePolicy;
+
 },{}]},{},[1])(1)
 });
