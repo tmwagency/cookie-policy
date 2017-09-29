@@ -1,6 +1,6 @@
 {
   "name": "tmw-cookiepolicy",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "A cookie policy banner for your site",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "policy",
     "banner"
   ],
-  "author": "Zander Martineau",
+  "author": ["Zander Martineau","Julio Brugos"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tmwagency/cookie-policy/issues"
