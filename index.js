@@ -44,12 +44,7 @@ function CookiePolicy(element, options) {
  */
 CookiePolicy.prototype.showCookieMessage = function() {
 	this.element.classList.add('is-visible');
-
-	try {
-		localStorage.setItem(this.options.policySeen, true);
-	} catch (e) {
-		console.log("localStorage not supported: " + e);
-	}
+	localStorage.setItem(this.options.policySeen, true);
 };
 
 /**
@@ -71,12 +66,7 @@ CookiePolicy.prototype.acceptPolicy = function(ev) {
 		ev.preventDefault();
 	}
 
-	try {
-		localStorage.setItem(this.options.policyName, true);
-	} catch (e) {
-		console.log("localStorage not supported: " + e);
-	}
-
+	localStorage.setItem(this.options.policyName, true);
 	this.element.classList.remove('is-visible');
 };
 
